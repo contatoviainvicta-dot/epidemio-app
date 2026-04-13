@@ -13,7 +13,32 @@ st.title("📊 Calculadora Epidemiológica")
 st.write("Faça upload de uma planilha Excel com colunas: exposicao e doenca")
 
 arquivo = st.file_uploader("Upload do Excel", type=["xlsx"])
+arquivo = st.file_uploader("Upload do Excel", type=["xlsx"])
 
+if arquivo:
+    df = pd.read_excel(arquivo)
+
+    st.subheader("📄 Dados")
+    st.dataframe(df)
+
+    # 👉 AQUI entram os gráficos
+    st.subheader("📊 Visualizações")
+
+    grafico_barras_exposicao(df)
+    grafico_barras_doenca(df)
+    grafico_relacao_exposicao_doenca(df)
+if arquivo:
+    df = pd.read_excel(arquivo)
+
+    st.subheader("📄 Dados")
+    st.dataframe(df)
+
+    # 👉 AQUI entram os gráficos
+    st.subheader("📊 Visualizações")
+
+    grafico_barras_exposicao(df)
+    grafico_barras_doenca(df)
+    grafico_relacao_exposicao_doenca(df)
 if arquivo:
     df = pd.read_excel(arquivo)
 
@@ -55,8 +80,3 @@ if arquivo:
 
     if resultados['Especificidade'] > 0.8:
         st.write("👉 Teste bom para confirmação")
-st.subheader("📊 Visualizações")
-
-grafico_barras_exposicao(df)
-grafico_barras_doenca(df)
-grafico_relacao_exposicao_doenca(df)
