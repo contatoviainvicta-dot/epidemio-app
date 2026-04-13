@@ -1,7 +1,11 @@
 import streamlit as st
 import pandas as pd
 from epidemiologia import tabela_2x2, calcular_medidas
-
+from graficos import (
+    grafico_barras_exposicao,
+    grafico_barras_doenca,
+    grafico_relacao_exposicao_doenca
+)
 st.set_page_config(page_title="Epidemiologia Clínica", layout="centered")
 
 st.title("📊 Calculadora Epidemiológica")
@@ -51,3 +55,8 @@ if arquivo:
 
     if resultados['Especificidade'] > 0.8:
         st.write("👉 Teste bom para confirmação")
+st.subheader("📊 Visualizações")
+
+grafico_barras_exposicao(df)
+grafico_barras_doenca(df)
+grafico_relacao_exposicao_doenca(df)
